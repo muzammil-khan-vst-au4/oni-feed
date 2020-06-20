@@ -65,14 +65,6 @@ class Profile extends Component {
     }
   };
 
-  /*   handleFollow = () => {
-    this.props.followUser(this.props.match.params.userId);
-  };
-
-  handleUnfollow = () => {
-    this.props.unfollowUser(this.props.match.params.userId);
-  }; */
-
   render() {
     const {
       classes,
