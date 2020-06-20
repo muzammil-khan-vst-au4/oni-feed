@@ -6,7 +6,7 @@ import { fade } from "@material-ui/core/styles/colorManipulator";
 import { connect } from "react-redux";
 import { withRouter } from "react-router-dom";
 
-import { searchUser } from "../../actions/profileActions";
+import { searchPosts } from "../../actions/postActions";
 
 const styles = (theme) => ({
   search: {
@@ -57,7 +57,7 @@ class SearchForm extends Component {
     };
 
     if (e.key === "Enter") {
-      this.props.searchUser(searchData, this.props.history);
+      this.props.searchPosts(searchData, this.props.history);
     }
   };
 
@@ -81,6 +81,6 @@ class SearchForm extends Component {
   }
 }
 
-export default connect(null, { searchUser })(
+export default connect(null, { searchPosts })(
   withRouter(withStyles(styles)(SearchForm))
 );

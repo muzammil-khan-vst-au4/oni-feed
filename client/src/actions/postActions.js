@@ -1,5 +1,5 @@
 import axios from "axios";
-import { ADD_POST, GET_POSTS, LOADING_POSTS } from "../constants";
+import { ADD_POST, GET_POSTS, LOADING_POSTS, GET_SEARCH } from "../constants";
 
 export const addPost = (postData) => (dispatch) => {
   axios
@@ -26,14 +26,19 @@ export const getPosts = () => (dispatch) => {
     .catch((err) => console.log(err));
 };
 
-/* export const getPostsByFollowingUsers = () => dispatch => {
-	axios.get('http://localhost:5000/api/posts/following')
-	.then(res => dispatch({
-		type: GET_POSTS,
-		payload: res.data
-	}))
-	.catch(err => console.log(err))
-} */
+export const searchPosts = (query, history) => (dispatch) => {
+  axios
+    .post("http://localhost:5000/api/posts/search", query)
+    .then((res) => {
+      console.log("response in actions", res);
+      history.push(`/search`);
+      dispatch({
+        type: GET_SEARCH,
+        payload: res.data,
+      });
+    })
+    .catch((err) => console.log(err));
+};
 
 export const loadPosts = () => {
   return {

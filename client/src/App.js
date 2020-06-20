@@ -12,7 +12,7 @@ import Register from "./components/Auth/Register";
 import Login from "./components/Auth/Login";
 import Profile from "./components/Profile/Profile";
 import NotFound from "./components/NotFound";
-import Search from "./components/Search/NotFound";
+import Search from "./components/Search/SearchResult";
 
 import setAuthHeader from "./utils/setAuthHeader";
 import { logoutUser, getCurrentUser } from "./actions/authActions";

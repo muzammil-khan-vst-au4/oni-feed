@@ -1,10 +1,10 @@
 const router = require("express").Router();
 const passport = require("passport");
 const Post = require("../models/Post");
+
 router
   .route("/add")
   .post(passport.authenticate("jwt", { session: false }), (req, res) => {
-    //TODO : handle media uploads
     const text = req.body.text.trim();
     const media = req.body.media;
     const newPost = new Post({
@@ -34,6 +34,21 @@ router.route("/:userId").get((req, res) => {
     .sort({ createdAt: -1 })
     .then((posts) => res.json(posts))
     .catch((err) => console.log(err));
+});
+
+router.route("/search").post(async (req, res) => {
+  try {
+    console.log(req.body);
+    const query = req.body.text;
+    const searchResult = await Post.find(
+      { $text: { $search: query } },
+      { score: { $meta: "textScore" } }
+    ).sort({ score: { $meta: "textScore" } });
+    console.log(searchResult);
+    res.json(searchResult);
+  } catch (error) {
+    console.log(error);
+  }
 });
 
 module.exports = router;

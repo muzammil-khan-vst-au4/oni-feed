@@ -84,9 +84,6 @@ router
     });
   });
 
-router.route("/search");
-//TODO : search posts
-
 //profile page data
 router.route("/:id").get((req, res) => {
   User.findById(req.params.id)
