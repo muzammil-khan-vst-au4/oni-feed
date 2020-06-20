@@ -24,7 +24,7 @@ router.route("/register").post((req, res) => {
       bcrypt.hash(req.body.password, salt, function (err, hash) {
         const newUser = new User({
           email: req.body.email,
-          login: req.body.login,
+          name: req.body.name,
           password: hash,
         });
 
@@ -78,7 +78,7 @@ router
     res.json({
       _id: req.user._id,
       email: req.user.email,
-      login: req.user.login,
+      name: req.user.name,
       followers: req.user.followers,
       following: req.user.following,
     });
@@ -95,7 +95,7 @@ router.route("/:id").get((req, res) => {
         return res.json({
           _id: user._id,
           email: user.email,
-          login: user.login,
+          name: user.name,
           followers: user.followers,
           following: user.following,
         });

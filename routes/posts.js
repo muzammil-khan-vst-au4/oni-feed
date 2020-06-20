@@ -11,7 +11,7 @@ router
     const newPost = new Post({
       user: {
         id: req.user.id,
-        login: req.user.login,
+        name: req.user.name,
       },
       text,
     });
