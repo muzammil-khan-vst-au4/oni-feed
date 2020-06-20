@@ -57,19 +57,20 @@ class AddPost extends Component {
     const data = new FormData();
     data.append("file", files[0]);
     data.append("upload_preset", "gakbg3vt");
-    //setLoading(true)
     this.setState({
       data,
     });
   };
 
   postMedia = async (data) => {
-    const res = await fetch("	https://api.cloudinary.com/v1_1/deo2tr2pt", {
-      method: "POST",
-      body: data,
-    });
+    const res = await fetch(
+      "https://api.cloudinary.com/v1_1/deo2tr2pt/upload",
+      {
+        method: "POST",
+        body: data,
+      }
+    );
     const file = await res.json();
-    console.log(file);
     this.setState({
       media: file.secure_url,
     });
